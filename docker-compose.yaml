@@ -1,0 +1,16 @@
+services:
+  bug-tracker-postgres:
+    image: postgres:18.7-bookworm
+    container_name: bug-tracker-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DATABASE}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - bug-tracker-db-data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  bug-tracker-db-data:
