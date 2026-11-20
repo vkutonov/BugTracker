@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BugTrack · Ticket</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header class="header" id="header"></header>
+
+  <div class="app">
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+      <div class="breadcrumbs" id="breadcrumbs"></div>
+      <div class="page-head">
+        <div>
+          <h1 id="ticket-title"></h1>
+          <p class="muted" id="ticket-meta"></p>
+        </div>
+        <a class="btn" id="back-link">Back to Kanban</a>
+      </div>
+
+      <div class="grid-main">
+        <div>
+          <div class="card">
+            <h2>Description</h2>
+            <p id="ticket-description"></p>
+            <h3 style="margin-top: 16px">Steps to reproduce</h3>
+            <ol class="steps" id="ticket-steps"></ol>
+          </div>
+          <div class="card">
+            <h2>Logs &amp; Screenshots</h2>
+            <div class="attachment">confirm-dialog.png</div>
+            <div class="attachment">console-error.log</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2>Status</h2>
+          <span class="badge badge-status" id="ticket-status"></span>
+          <div class="info-label">Priority</div>
+          <div id="ticket-priority"></div>
+          <div class="info-label">Author</div>
+          <div id="ticket-author"></div>
+          <div class="info-label">Assignee</div>
+          <div id="ticket-assignee"></div>
+          <div class="info-label">Created</div>
+          <div id="ticket-created"></div>
+          <div class="actions" id="ticket-actions"></div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <dialog id="confirm-dialog">
+    <h2 id="confirm-title"></h2>
+    <p class="muted" id="confirm-text"></p>
+    <div class="dialog-buttons">
+      <button class="btn" onclick="this.closest('dialog').close()">Cancel</button>
+      <button class="btn btn-primary" id="confirm-ok">Confirm</button>
+    </div>
+  </dialog>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/pages/ticket.js"></script>
+</body>
+</html>
