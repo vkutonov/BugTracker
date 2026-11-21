@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BugTrack · Kanban</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header class="header" id="header"></header>
+
+  <div class="app">
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+      <div class="breadcrumbs" id="breadcrumbs"></div>
+      <div class="page-head">
+        <div>
+          <h1 id="project-name"></h1>
+          <p class="muted" id="project-description"></p>
+        </div>
+        <div>
+          <a class="btn" id="settings-link">Settings</a>
+          <a class="btn btn-primary" id="create-link">+ Create Ticket</a>
+        </div>
+      </div>
+
+      <div class="filters">
+        <select id="priority-filter">
+          <option value="">All priorities</option>
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+        </select>
+        <select id="assignee-filter">
+          <option value="">All assignees</option>
+        </select>
+        <span class="muted" id="tickets-count" style="align-self: center"></span>
+      </div>
+
+      <div class="kanban" id="kanban"></div>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/pages/kanban.js"></script>
+</body>
+</html>

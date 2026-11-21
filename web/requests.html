@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BugTrack · My Requests</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header class="header" id="header"></header>
+
+  <div class="app">
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+      <div class="breadcrumbs">Workspace</div>
+      <h1>My Requests</h1>
+      <p class="muted">Track the status of your requests to join student projects.</p>
+
+      <div class="card" style="margin-top: 24px">
+        <h2>Awaiting Approval</h2>
+        <p class="muted">Projects you have requested to join.</p>
+        <div id="requests"></div>
+        <p class="muted">Project tickets will be available after the owner approves your request.</p>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/pages/requests.js"></script>
+</body>
+</html>

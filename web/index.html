@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BugTrack · Sign In</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header class="header">
+    <div>
+      <span class="logo">BugTrack</span>
+      <span class="muted logo-hint">Student workspace</span>
+    </div>
+  </header>
+
+  <main class="auth-page">
+    <form class="card" id="signin-form" novalidate>
+      <h2>Sign In</h2>
+      <p class="muted">Enter your email and password to continue.</p>
+
+      <div class="field">
+        <label for="signin-email">Email</label>
+        <input id="signin-email" type="email" placeholder="alex.johnson@student.dev">
+      </div>
+
+      <div class="field">
+        <label for="signin-password">Password</label>
+        <input id="signin-password" type="password">
+        <div class="error" id="signin-error"></div>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="submit">Sign In</button>
+      <a class="auth-link" href="#signup-form">No account yet? Create Account</a>
+    </form>
+
+    <form class="card" id="signup-form" novalidate>
+      <h2>Create Account</h2>
+      <p class="muted">Your account is used for all project teams.</p>
+
+      <div class="field">
+        <label for="signup-name">Full name</label>
+        <input id="signup-name" placeholder="Alex Johnson">
+        <div class="error" id="signup-name-error"></div>
+      </div>
+
+      <div class="field">
+        <label for="signup-email">Email</label>
+        <input id="signup-email" type="email" placeholder="alex.johnson@student.dev">
+        <div class="error" id="signup-email-error"></div>
+      </div>
+
+      <div class="field">
+        <label for="signup-password">Password</label>
+        <input id="signup-password" type="password">
+        <div class="error" id="signup-password-error"></div>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="submit">Create Account</button>
+      <a class="auth-link" href="#signin-form">Already have an account? Sign In</a>
+    </form>
+  </main>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/pages/auth.js"></script>
+</body>
+</html>
