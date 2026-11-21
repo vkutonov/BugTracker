@@ -9,8 +9,26 @@ services:
     ports:
       - "127.0.0.1:${POSTGRES_PORT:-5432}:5432"
     volumes:
-      - bug-tracker-db-data:/var/lib/postgresql/data
-    restart: always
+      - bug-tracker-db-data:/var/lib/postgresql
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - pg_isready -U "$$POSTGRES_USER" -d "$$POSTGRES_DB"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+  
+  bug-tracker-migrate:
+    image: migrate/migrate:v4.20.1
+    volumes:
+      - ./migrations:/migrations
+    depends_on:
+      bug-tracker-postgres:
+        condition: service_healthy
+
+
 
 volumes:
   bug-tracker-db-data:
