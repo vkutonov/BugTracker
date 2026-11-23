@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BugTrack · Dashboard</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header class="header" id="header"></header>
+
+  <div class="app">
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+      <h1>User Dashboard</h1>
+      <p class="muted" id="welcome"></p>
+
+      <div class="page-head" style="margin-top: 24px">
+        <h2>My Projects</h2>
+        <button class="btn btn-primary" id="create-open">Create Project</button>
+      </div>
+
+      <div class="card row">
+        <div>
+          <h3>Join a Project</h3>
+          <p class="muted">Have a project ID? Send a request to join an existing team.</p>
+        </div>
+        <button class="btn" id="join-open">Join Project</button>
+      </div>
+
+      <div class="row" style="margin: 24px 0 12px">
+        <h2>Active Projects</h2>
+        <span class="muted" id="projects-count"></span>
+      </div>
+      <div class="grid-2" id="projects"></div>
+    </main>
+  </div>
+
+  <dialog id="create-dialog">
+    <form id="create-form" novalidate>
+      <h2>Create Project</h2>
+      <div class="field">
+        <label for="project-name">Project name</label>
+        <input id="project-name">
+        <div class="error" id="project-name-error"></div>
+      </div>
+      <div class="field">
+        <label for="project-description">Description</label>
+        <textarea id="project-description"></textarea>
+      </div>
+      <div class="dialog-buttons">
+        <button class="btn" type="button" onclick="this.closest('dialog').close()">Cancel</button>
+        <button class="btn btn-primary" type="submit">Create</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="join-dialog">
+    <form id="join-form" novalidate>
+      <h2>Join Project</h2>
+      <div class="field">
+        <label for="join-id">Project ID</label>
+        <input id="join-id" placeholder="Enter Project ID">
+        <div class="error" id="join-error"></div>
+      </div>
+      <div class="dialog-buttons">
+        <button class="btn" type="button" onclick="this.closest('dialog').close()">Cancel</button>
+        <button class="btn btn-primary" type="submit">Send</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/pages/dashboard.js"></script>
+</body>
+</html>

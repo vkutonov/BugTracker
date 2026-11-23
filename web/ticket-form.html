@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BugTrack · Ticket form</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+  <header class="header" id="header"></header>
+
+  <div class="app">
+    <nav class="sidebar" id="sidebar"></nav>
+
+    <main class="content">
+      <div class="breadcrumbs" id="breadcrumbs"></div>
+      <h1 id="form-title">Create New Ticket</h1>
+      <p class="muted">Report a bug and share the details your team needs to reproduce it.</p>
+
+      <form class="card" id="ticket-form" style="margin-top: 20px; max-width: 720px" novalidate>
+        <h3 id="form-project" style="margin-bottom: 16px"></h3>
+
+        <div class="field">
+          <label for="title">Title</label>
+          <input id="title">
+          <div class="error" id="title-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="description">Description</label>
+          <textarea id="description"></textarea>
+          <div class="error" id="description-error"></div>
+        </div>
+
+        <div class="field">
+          <label for="steps">Steps to reproduce (one per line)</label>
+          <textarea id="steps"></textarea>
+        </div>
+
+        <div class="field">
+          <label for="priority">Priority</label>
+          <select id="priority">
+            <option>High</option>
+            <option selected>Medium</option>
+            <option>Low</option>
+          </select>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Save Ticket</button>
+        <a class="btn" id="cancel-link">Cancel</a>
+      </form>
+    </main>
+  </div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/pages/ticket-form.js"></script>
+</body>
+</html>
