@@ -8,7 +8,6 @@ import (
 
 type Claims struct {
 	UserID   string `json:"user_id"`
-	Projects map[string]string//Поле для определение роли в опрделённом проекте вида Проект:Роль пока что string
 	jwt.RegisteredClaims
 }
 

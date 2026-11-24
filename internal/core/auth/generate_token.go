@@ -8,13 +8,11 @@ import (
 
 func (m *Manager) GenerateToken(
 	userID string,
-	projects map[string]string,
 ) (string, error) {
 	now := time.Now().UTC()
 
 	claims := Claims{
 		UserID:   userID,
-		Projects: projects,
 		RegisteredClaims: jwt.RegisteredClaims{
 			ExpiresAt: jwt.NewNumericDate(now.Add(m.accessTTL)),
 			IssuedAt:  jwt.NewNumericDate(now),
