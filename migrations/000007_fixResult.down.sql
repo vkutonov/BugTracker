@@ -1,0 +1,1 @@
+DROP TABLE bugtracker.fix_result

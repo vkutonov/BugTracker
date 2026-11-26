@@ -1,0 +1,1 @@
+DROP TABLE bugtracker.join_request;
