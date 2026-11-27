@@ -14,6 +14,7 @@ type HTTPServer struct {
 }
 
 func NewHTTPServer(cfg Config, middlewares ...gin.HandlerFunc) *HTTPServer {
+	gin.SetMode(cfg.Mode)
 	r := gin.New()
 
 	r.Use(

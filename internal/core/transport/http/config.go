@@ -8,9 +8,9 @@ import (
 )
 
 type Config struct {
-	Addr         string        `envconfig:"ADDR" default:"8080"`
-	Mode         string        `envconfig:"GIN_MODE default:"debug"`
-	ReadTimeout  time.Duration `envconfig:"READ_TIMEOUT" dafault:"30s"`
+	Addr         string        `envconfig:"ADDR" default:":8080"`
+	Mode         string        `envconfig:"GIN_MODE" default:"debug"`
+	ReadTimeout  time.Duration `envconfig:"READ_TIMEOUT" default:"30s"`
 	WriteTimeout time.Duration `envconfig:"WRITE_TIMEOUT" default:"30s"`
 }
 
