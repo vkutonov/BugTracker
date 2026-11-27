@@ -16,7 +16,9 @@ func (m *Manager) ParseToken(tokenStr string) (*Claims, error) {
 				return nil, fmt.Errorf("unexpected signing method :%v", t.Header["alsg"])
 			}
 			return m.secret, nil
-		})
+		},
+		jwt.WithValidMethods([]string{"HS256"}),
+	)
 	if err != nil {
 		return nil, err
 	}

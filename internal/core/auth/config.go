@@ -8,9 +8,9 @@ import (
 )
 
 type Congfig struct {
-	Secret     string        `envconfig:"SECRET" required:"true`
-	AccessTTL  time.Duration `envconfig:"ACCESS_TTL" default:"15m`
-	RegreshTTL time.Duration `envconfig:"REFRESH_TTL default:"720h"`
+	Secret     string        `envconfig:"SECRET" required:"true"`
+	AccessTTL  time.Duration `envconfig:"ACCESS_TTL" default:"15m"`
+	RegreshTTL time.Duration `envconfig:"REFRESH_TTL" default:"720h"`
 }
 
 func NewConfig() (Congfig, error) {
