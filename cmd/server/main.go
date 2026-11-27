@@ -2,10 +2,13 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/vkutonov/BugTracker/internal/core/auth"
+	transport_http "github.com/vkutonov/BugTracker/internal/core/transport/http"
+	"github.com/vkutonov/BugTracker/internal/core/transport/http/middleware"
 )
 
 var Timezone = time.UTC
@@ -16,18 +19,13 @@ func main() {
 		syscall.SIGTERM,
 		syscall.SIGINT,
 	)
-
 	defer cancel()
 
-	for {
-		select {
-		case <-ctx.Done():
-			fmt.Println("Shutdown")
-			return
-		default:
-			time.Sleep(time.Second * 5)
-			fmt.Println("Server is working")
-		}
-	}
+	server := transport_http.NewHTTPServer(
+		transport_http.NewConfigMust(),
+		middleware.JwtAuthMiddleware(auth.NewManager(auth.NewConfigMust())),
+	)
+
+	server.Start(ctx)
 
 }

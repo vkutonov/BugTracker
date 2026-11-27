@@ -23,6 +23,7 @@ func JwtAuthMiddleware(m *auth.Manager) gin.HandlerFunc {
 			}
 			c.Set("x-user-id", claims.UserID)
 			c.Next()
+			return
 		}
 		c.JSON(http.StatusUnauthorized, common.ErrUnauthorized)
 		c.Abort()
