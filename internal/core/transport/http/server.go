@@ -1,7 +1,11 @@
-package transport_http
+package http
 
 import (
+	"context"
+	"errors"
+	"fmt"
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
@@ -40,4 +44,33 @@ func NewHTTPServer(cfg Config, middlewares ...gin.HandlerFunc) *HTTPServer {
 		},
 	}
 
+}
+
+func (s *HTTPServer) Start(ctx context.Context) error {
+	errCh := make(chan error, 1)
+
+	go func() {
+		errCh <- s.httpServer.ListenAndServe()
+	}()
+	defer close(errCh)
+
+	for {
+		select {
+		case err := <-errCh:
+			if !errors.Is(err, http.ErrServerClosed) {
+				err = fmt.Errorf("failed to server start:%w", err)
+				return err
+			}
+		case <-ctx.Done():
+			shutdownCtx, cancel := context.WithTimeout(ctx, 10*time.Second)
+			defer cancel()
+
+			if err := s.httpServer.Shutdown(shutdownCtx); err != nil {
+				err := s.httpServer.Close()
+				return err
+			}
+
+			return nil
+		}
+	}
 }

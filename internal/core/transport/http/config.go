@@ -1,4 +1,4 @@
-package transport_http
+package http
 
 import (
 	"fmt"
