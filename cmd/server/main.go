@@ -26,6 +26,8 @@ func main() {
 		middleware.JwtAuthMiddleware(auth.NewManager(auth.NewConfigMust())),
 	)
 
-	server.Start(ctx)
+	if err := server.Start(ctx); err != nil {
+		panic(err)
+	}
 
 }
