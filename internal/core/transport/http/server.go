@@ -52,25 +52,26 @@ func (s *HTTPServer) Start(ctx context.Context) error {
 	go func() {
 		errCh <- s.httpServer.ListenAndServe()
 	}()
-	defer close(errCh)
 
-	for {
-		select {
-		case err := <-errCh:
-			if !errors.Is(err, http.ErrServerClosed) {
-				err = fmt.Errorf("failed to server start:%w", err)
-				return err
-			}
-		case <-ctx.Done():
-			shutdownCtx, cancel := context.WithTimeout(ctx, 10*time.Second)
-			defer cancel()
-
-			if err := s.httpServer.Shutdown(shutdownCtx); err != nil {
-				err := s.httpServer.Close()
-				return err
-			}
-
-			return nil
+	select {
+	case err := <-errCh:
+		if !errors.Is(err, http.ErrServerClosed) {
+			err = fmt.Errorf("failed to server start:%w", err)
+			return err
 		}
+		return nil
+	case <-ctx.Done():
+		shutdownCtx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+		defer cancel()
+
+		if err := s.httpServer.Shutdown(shutdownCtx); err != nil {
+			return errors.Join(
+				fmt.Errorf("shutdown HTTP server: %w", err),
+				s.httpServer.Close(),
+			)
+		}
+
+		return nil
 	}
+
 }
