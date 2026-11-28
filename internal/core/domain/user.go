@@ -2,6 +2,7 @@ package domain
 
 import (
 	"time"
+
 	"github.com/google/uuid"
 )
 
@@ -11,7 +12,7 @@ type User struct {
 	Email        string
 	PasswordHash string
 	CreatedAt    time.Time
-	UpdatedAt *time.Time
+	UpdatedAt    *time.Time
 }
 
 func NewUser(
